@@ -1,22 +1,17 @@
 //your JS code here. If required.
-let btn = document.getElementById('btn');
+const text = document.getElementById("text");
+const delay = document.getElementById("delay");
+const btn = document.getElementById("btn");
+const output = document.getElementById("output");
 
-btn.addEventListener('click', async () => {
-  let text = document.getElementById('text').value;
-  let delay = document.getElementById('delay').value;
-
-  const delayedMessage = async () => {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve(text);
-      }, delay * 1000);
-    });
-  };
-
-  try {
-    const message = await delayedMessage();
-    document.getElementById('output').innerText = message;
-  } catch (error) {
-    console.error(error);
-  }
+//your code here
+async function showMessage() {
+  const message = text.value;
+  const delayVal = delay.value;
+  await new Promise((resolve) => setTimeout(resolve, delayVal));
+  output.innerText = message;
+}
+showMessage().then(()=>{
+	output.innerHTML = text.value;
 });
+btn.addEventListener("click", showMessage);
